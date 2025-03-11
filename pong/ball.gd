@@ -31,6 +31,10 @@ func _on_ball_area_body_entered(body: Node2D) -> void:
 
 
 func _on_ball_area_area_entered(area: Area2D) -> void:
+	reset()
+	update_score(area)
+
+func update_score(area):
 	if area.name == "P1ScoreArea":
 		direction.x = -1
 		p2_score += 1
@@ -38,11 +42,6 @@ func _on_ball_area_area_entered(area: Area2D) -> void:
 		direction.x = 1
 		p1_score += 1
 	direction.y = 0
-	reset()
-	speed = STARTING_SPEED * MULTIPLIER
-	update_score()
-
-func update_score():
 	$"../Score".text = "%d:%d" % [p1_score, p2_score]
 
 func reset():
@@ -50,3 +49,4 @@ func reset():
 	self.global_position = Vector2(viewport.x / 2,viewport.y / 2)
 	$"../Player1".reset()
 	$"../Player2".reset()
+	speed = STARTING_SPEED * MULTIPLIER
