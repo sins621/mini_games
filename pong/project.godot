@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="pong"
-run/main_scene="uid://bbxc1j7xtgeln"
+run/main_scene="uid://c0qmrxyat7ugc"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 run/max_fps=60
 boot_splash/show_image=false

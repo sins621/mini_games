@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0qmrxyat7ugc"]
+[gd_scene load_steps=15 format=3 uid="uid://c0qmrxyat7ugc"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_1bvp3"]
-[ext_resource type="Script" path="res://player_1.gd" id="1_ig7tw"]
-[ext_resource type="Script" path="res://player_2.gd" id="2_0xm2m"]
-[ext_resource type="Script" path="res://ball.gd" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://f15gbgvayk6y" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://d1st21ucs4li" path="res://player_1.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dm3fvh6440jwo" path="res://player_2.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dga64tk6tohfk" path="res://ball.gd" id="3_h2yge"]
 [ext_resource type="FontFile" uid="uid://dqie0t26c0ov1" path="res://font/zxSpectrumStrictCondensed.ttf" id="5_lquwl"]
+[ext_resource type="Shader" uid="uid://c3aqajrdp3ld8" path="res://shaders/vhs_effect.gdshader" id="6_7mycd"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1bvp3"]
 b = Vector2(320, 0)
@@ -28,6 +29,30 @@ b = Vector2(0, 180)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_272bh"]
 a = Vector2(320, 0)
 b = Vector2(320, 180)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("6_7mycd")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.18
+shader_parameter/scanlines_width = 0.234
+shader_parameter/grille_opacity = 0.045
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 10.0
+shader_parameter/roll_size = 29.034
+shader_parameter/roll_variation = 0.871
+shader_parameter/distort_intensity = 0.003
+shader_parameter/noise_opacity = 0.079
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.185
+shader_parameter/vignette_opacity = 0.21
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -116,6 +141,13 @@ theme_override_font_sizes/font_size = 64
 text = "0:0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_lquwl")
+offset_right = 320.0
+offset_bottom = 180.0
 
 [connection signal="area_entered" from="Ball/BallArea" to="Ball" method="_on_ball_area_area_entered"]
 [connection signal="body_entered" from="Ball/BallArea" to="Ball" method="_on_ball_area_body_entered"]

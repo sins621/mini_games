@@ -11,6 +11,8 @@ var p2_score = 0
 func _physics_process(delta: float) -> void:
 	velocity = direction * speed * delta
 	move_and_slide()
+	if self.global_position > get_viewport_rect().size + Vector2(100, 100) || self.global_position < -get_viewport_rect().size - Vector2(100, 100):
+		reset()
 
 
 func _on_ball_area_body_entered(body: Node2D) -> void:
@@ -29,8 +31,6 @@ func _on_ball_area_body_entered(body: Node2D) -> void:
 
 
 func _on_ball_area_area_entered(area: Area2D) -> void:
-	var viewport = get_viewport_rect().size
-	self.global_position = Vector2(viewport.x / 2,viewport.y / 2)
 	if area.name == "P1ScoreArea":
 		direction.x = -1
 		p2_score += 1
@@ -38,10 +38,15 @@ func _on_ball_area_area_entered(area: Area2D) -> void:
 		direction.x = 1
 		p1_score += 1
 	direction.y = 0
-	$"../Player1".reset()
-	$"../Player2".reset()
+	reset()
 	speed = STARTING_SPEED * MULTIPLIER
 	update_score()
 
 func update_score():
 	$"../Score".text = "%d:%d" % [p1_score, p2_score]
+
+func reset():
+	var viewport = get_viewport_rect().size
+	self.global_position = Vector2(viewport.x / 2,viewport.y / 2)
+	$"../Player1".reset()
+	$"../Player2".reset()
