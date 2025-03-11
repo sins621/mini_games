@@ -14,4 +14,7 @@ export_presets.cfg
 data_*/
 mono_crash.*.json
 
-/android/
+# Other folders
+android/
+exports
+web
