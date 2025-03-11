@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/pong", express.static(path.join(__dirname, "public", "pong")));
+app.use("/game/pong", express.static(path.join(__dirname, "public", "pong")));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
