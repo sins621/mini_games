@@ -1,15 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbxc1j7xtgeln"]
+[gd_scene load_steps=13 format=3 uid="uid://bbxc1j7xtgeln"]
 
 [ext_resource type="Script" uid="uid://f15gbgvayk6y" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="Script" uid="uid://d1st21ucs4li" path="res://player_1.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://dm3fvh6440jwo" path="res://player_2.gd" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://dga64tk6tohfk" path="res://ball.gd" id="3_h2yge"]
+[ext_resource type="FontFile" uid="uid://dqie0t26c0ov1" path="res://font/zxSpectrumStrictCondensed.ttf" id="5_lquwl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1bvp3"]
+b = Vector2(320, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lquwl"]
+a = Vector2(0, 180)
+b = Vector2(320, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
 size = Vector2(10, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
+size = Vector2(10, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
 size = Vector2(6, 6)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_7mycd"]
+b = Vector2(0, 180)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_272bh"]
+a = Vector2(320, 0)
+b = Vector2(320, 180)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1bvp3")
@@ -18,6 +36,14 @@ script = ExtResource("1_1bvp3")
 offset_right = 320.0
 offset_bottom = 180.0
 color = Color(0.129558, 0.129558, 0.129558, 1)
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary"]
+shape = SubResource("SegmentShape2D_1bvp3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundary"]
+shape = SubResource("SegmentShape2D_lquwl")
 
 [node name="Player1" type="CharacterBody2D" parent="."]
 position = Vector2(20, 90)
@@ -31,7 +57,7 @@ offset_bottom = 10.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
-shape = SubResource("RectangleShape2D_0xm2m")
+shape = SubResource("RectangleShape2D_1bvp3")
 
 [node name="Player2" type="CharacterBody2D" parent="."]
 position = Vector2(300, 90)
@@ -45,7 +71,7 @@ offset_bottom = 10.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
-shape = SubResource("RectangleShape2D_0xm2m")
+shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="Ball" type="CharacterBody2D" parent="."]
 position = Vector2(160, 90)
@@ -57,5 +83,39 @@ offset_top = -3.0
 offset_right = 3.0
 offset_bottom = 3.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
-shape = SubResource("RectangleShape2D_h2yge")
+[node name="BallArea" type="Area2D" parent="Ball"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/BallArea"]
+shape = SubResource("RectangleShape2D_7mycd")
+
+[node name="P1ScoreArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="P1ScoreArea"]
+shape = SubResource("SegmentShape2D_7mycd")
+
+[node name="P2ScoreArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="P2ScoreArea"]
+shape = SubResource("SegmentShape2D_272bh")
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 137.0
+offset_top = -15.0
+offset_right = 185.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("5_lquwl")
+theme_override_font_sizes/font_size = 64
+text = "0:0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="Ball/BallArea" to="Ball" method="_on_ball_area_area_entered"]
+[connection signal="body_entered" from="Ball/BallArea" to="Ball" method="_on_ball_area_body_entered"]
