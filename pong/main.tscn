@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbxc1j7xtgeln"]
+[gd_scene load_steps=13 format=3 uid="uid://c0qmrxyat7ugc"]
 
-[ext_resource type="Script" uid="uid://f15gbgvayk6y" path="res://main.gd" id="1_1bvp3"]
-[ext_resource type="Script" uid="uid://d1st21ucs4li" path="res://player_1.gd" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://dm3fvh6440jwo" path="res://player_2.gd" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://dga64tk6tohfk" path="res://ball.gd" id="3_h2yge"]
+[ext_resource type="Script" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Script" path="res://player_1.gd" id="1_ig7tw"]
+[ext_resource type="Script" path="res://player_2.gd" id="2_0xm2m"]
+[ext_resource type="Script" path="res://ball.gd" id="3_h2yge"]
 [ext_resource type="FontFile" uid="uid://dqie0t26c0ov1" path="res://font/zxSpectrumStrictCondensed.ttf" id="5_lquwl"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1bvp3"]
