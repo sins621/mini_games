@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbxc1j7xtgeln"]
+
+[ext_resource type="Script" uid="uid://d1st21ucs4li" path="res://player_1.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://dm3fvh6440jwo" path="res://player_2.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://dga64tk6tohfk" path="res://ball.gd" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(10, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
+size = Vector2(6, 6)
+
+[node name="Main" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
+
+[node name="Player1" type="CharacterBody2D" parent="."]
+position = Vector2(20, 90)
+script = ExtResource("1_ig7tw")
+
+[node name="ColorRect" type="ColorRect" parent="Player1"]
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 5.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Player2" type="CharacterBody2D" parent="."]
+position = Vector2(300, 90)
+script = ExtResource("2_0xm2m")
+
+[node name="ColorRect" type="ColorRect" parent="Player2"]
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 5.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Ball" type="CharacterBody2D" parent="."]
+position = Vector2(160, 90)
+script = ExtResource("3_h2yge")
+
+[node name="ColorRect" type="ColorRect" parent="Ball"]
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("RectangleShape2D_h2yge")
