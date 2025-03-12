@@ -50,3 +50,4 @@ func reset():
 	$"../Player1".reset()
 	$"../Player2".reset()
 	speed = STARTING_SPEED * MULTIPLIER
+	direction.y = 0
