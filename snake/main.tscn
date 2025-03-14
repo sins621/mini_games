@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn57mr2ah7xfn"]
+
+[ext_resource type="Script" uid="uid://d1702u7pqlmiu" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cwtuf4rm1t4e0" path="res://snake_head.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bh724mp2xiosv" path="res://food.gd" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(4, 4)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0xm2m")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 160.0
+offset_bottom = 160.0
+color = Color(0.0728425, 0.0728427, 0.0728426, 1)
+
+[node name="SnakeHead" type="CharacterBody2D" parent="."]
+position = Vector2(128, 64)
+script = ExtResource("1_ig7tw")
+
+[node name="ColorRect" type="ColorRect" parent="SnakeHead"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Area2D" type="Area2D" parent="SnakeHead"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SnakeHead/Area2D"]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SnakeHead"]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Food" type="CharacterBody2D" parent="."]
+position = Vector2(112, 64)
+script = ExtResource("3_h2yge")
+
+[node name="ColorRect" type="ColorRect" parent="Food"]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Area2D" type="Area2D" parent="Food"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Food/Area2D"]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[connection signal="timeout" from="Timer" to="SnakeHead" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Food/Area2D" to="SnakeHead" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Food/Area2D" to="Food" method="_on_area_2d_body_entered"]
