@@ -34,6 +34,7 @@ func move_snake():
 	for i in range(segments.size() - 1, 0, -1):
 		segments[i].global_position = segments[i-1].global_position
 	move_direction = snake_head.get_move_direction() * seg_size
+	#FIX: I messed up the movement somehow
 	if move_direction:
 		snake_head.position += snake_head.get_move_direction()
 
