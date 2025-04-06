@@ -2,8 +2,13 @@ extends Node2D
 var cell_size: Vector2
 var segment_scene = preload("res://segment.tscn")
 
-var segments = []
+var segments := []
 var head = null
+var can_move := true
+var seg_size = get_viewport_rect().size.x / 20
+var current_direction = Vector2(-seg_size, 0)
+var move_direction
+@onready var snake_head: CharacterBody2D = $SnakeHead
 
 func _ready() -> void:
 	head = get_node("SnakeHead")
@@ -22,9 +27,21 @@ func add_new_segment():
 	add_child(new_segment)
 
 func _on_timer_timeout() -> void:
+	move_snake()
+	detect_collision()
+
+func move_snake():
 	for i in range(segments.size() - 1, 0, -1):
 		segments[i].global_position = segments[i-1].global_position
-	$SnakeHead.position += $SnakeHead.move_direction
+	move_direction = snake_head.get_move_direction() * seg_size
+	if move_direction:
+		snake_head.position += snake_head.get_move_direction()
+
+func detect_collision():
 	for i in range(segments.size() - 1, 0, -1):
-		if $SnakeHead.position == segments[i].position:
-			print('oh shit')
+		if snake_head.position == segments[i].position:
+			get_tree().change_scene_to_file("res://game_over.tscn")
+			return
+	if snake_head.position > get_viewport_rect().size:
+		get_tree().change_scene_to_file("res://game_over.tscn")
+		return

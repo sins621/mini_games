@@ -52,6 +52,5 @@ position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="body_entered" from="SnakeHead/Area2D" to="." method="_on_head_body_entered"]
 [connection signal="body_entered" from="Food/FoodArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Food/FoodArea2D" to="Food" method="_on_area_2d_body_entered"]

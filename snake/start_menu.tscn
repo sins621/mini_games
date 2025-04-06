@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnw6rt4dvpjhs"]
+
+[ext_resource type="Script" uid="uid://bqqur40v8wn8o" path="res://start_menu.gd" id="1_ia0g5"]
+[ext_resource type="FontFile" uid="uid://dqie0t26c0ov1" path="res://font/zxSpectrumStrictCondensed.ttf" id="1_jwbto"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia0g5"]
+bg_color = Color(0.158472, 0.158472, 0.158472, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="StartMenu" type="CanvasLayer"]
+script = ExtResource("1_ia0g5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 160.0
+offset_bottom = 160.0
+color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 50.0
+offset_top = 16.0
+offset_right = 110.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("1_jwbto")
+theme_override_font_sizes/font_size = 48
+text = "SNAKE"
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -16.0
+offset_right = 24.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_jwbto")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/hover = SubResource("StyleBoxFlat_ia0g5")
+text = "START"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
