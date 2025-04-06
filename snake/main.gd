@@ -28,9 +28,3 @@ func _on_timer_timeout() -> void:
 	for i in range(segments.size() - 1, 0, -1):
 		if $SnakeHead.position == segments[i].position:
 			print('oh shit')
-
-#func _on_head_body_entered(body: Node2D) -> void:
-	#if body.name != "Food":
-		#print("Nice")
-	#else:
-		#print("ahh")
