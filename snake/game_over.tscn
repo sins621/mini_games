@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxnnlcycdio5q"]
+
+[ext_resource type="Script" uid="uid://c7ehay3yt6cwm" path="res://game_over.gd" id="1_yxx3c"]
+[ext_resource type="FontFile" uid="uid://d4f8j32hdlr5g" path="res://font/PublicPixel.ttf" id="2_yxx3c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccer4"]
+bg_color = Color(0.133196, 0.133196, 0.133196, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8u835"]
+bg_color = Color(0.0999861, 0.099986, 0.0999859, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_yxx3c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 160.0
+offset_bottom = 160.0
+color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 8.0
+offset_top = 12.0
+offset_right = 152.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("2_yxx3c")
+theme_override_font_sizes/font_size = 16
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 112.0
+offset_bottom = 88.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_yxx3c")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/hover = SubResource("StyleBoxFlat_ccer4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8u835")
+text = "RESTART"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

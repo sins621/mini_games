@@ -11,10 +11,7 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/game/pong", express.static(path.join(__dirname, "public", "pong")));
-
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
-})
+app.use("/game/snake", express.static(path.join(__dirname, "public", "snake")));
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running at http://localhost:${PORT}`);
