@@ -1,3 +1,4 @@
+
 extends CharacterBody2D
 
 func get_move_direction():
