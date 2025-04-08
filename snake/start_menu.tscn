@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnw6rt4dvpjhs"]
+[gd_scene load_steps=7 format=3 uid="uid://bnw6rt4dvpjhs"]
 
 [ext_resource type="Script" uid="uid://bqqur40v8wn8o" path="res://start_menu.gd" id="1_ia0g5"]
 [ext_resource type="FontFile" uid="uid://d4f8j32hdlr5g" path="res://font/PublicPixel.ttf" id="2_ia0g5"]
+[ext_resource type="Shader" uid="uid://dax6314h62kqf" path="res://vhs.gdshader" id="3_vpdu5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia0g5"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 1)
@@ -16,6 +17,30 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v2mkm"]
+shader = ExtResource("3_vpdu5")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.254
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(160, 160)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.024
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.183
 
 [node name="StartMenu" type="CanvasLayer"]
 script = ExtResource("1_ia0g5")
@@ -53,5 +78,13 @@ theme_override_font_sizes/font_size = 8
 theme_override_styles/hover = SubResource("StyleBoxFlat_ia0g5")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vpdu5")
 text = "START"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_v2mkm")
+offset_right = 160.0
+offset_bottom = 160.0
+mouse_filter = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

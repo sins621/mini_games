@@ -1,11 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn57mr2ah7xfn"]
+[gd_scene load_steps=7 format=3 uid="uid://dn57mr2ah7xfn"]
 
 [ext_resource type="Script" uid="uid://d1702u7pqlmiu" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://cwtuf4rm1t4e0" path="res://snake_head.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://bh724mp2xiosv" path="res://food.gd" id="3_h2yge"]
+[ext_resource type="Shader" uid="uid://dax6314h62kqf" path="res://vhs.gdshader" id="4_1bvp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
 size = Vector2(4, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("4_1bvp3")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.254
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(160, 160)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.024
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.183
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
@@ -52,6 +77,13 @@ metadata/_edit_use_anchors_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Food/FoodArea2D"]
 position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_lquwl")
+offset_right = 160.0
+offset_bottom = 160.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Food/FoodArea2D" to="." method="_on_area_2d_body_entered"]
