@@ -54,6 +54,10 @@ func detect_collision():
 		if snake_head.position == segments[i].position:
 			get_tree().change_scene_to_file("res://game_over.tscn")
 			return
-	if snake_head.position > get_viewport_rect().size - Vector2(seg_size, seg_size) or snake_head.position < Vector2(0,0):
+	var positive_bounds = get_viewport_rect().size - Vector2(seg_size, seg_size)
+	if snake_head.position.x > positive_bounds.x or snake_head.position.y > positive_bounds.y:
+		get_tree().change_scene_to_file("res://game_over.tscn")
+		return
+	if snake_head.position.x < 0 or snake_head.position.y < 0:
 		get_tree().change_scene_to_file("res://game_over.tscn")
 		return
