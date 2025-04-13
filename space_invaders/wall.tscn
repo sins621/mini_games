@@ -20,6 +20,7 @@ hframes = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Corner Right/Area2D"]
 position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_y4f30")
+debug_color = Color(0, 1, 0, 0.313726)
 
 [node name="Corner Left" type="Sprite2D" parent="."]
 position = Vector2(-12, -16)
@@ -32,6 +33,7 @@ hframes = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Corner Left/Area2D"]
 position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_y4f30")
+debug_color = Color(0, 1, 0, 0.313726)
 
 [node name="Bottom Left" type="Sprite2D" parent="."]
 position = Vector2(-8, -4)
@@ -42,6 +44,7 @@ hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Left/Area2D"]
 shape = SubResource("RectangleShape2D_y4f30")
+debug_color = Color(0, 1, 0, 0.313726)
 
 [node name="Middle" type="Sprite2D" parent="."]
 position = Vector2(0, -12)
@@ -52,6 +55,7 @@ hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Middle/Area2D"]
 shape = SubResource("RectangleShape2D_y4f30")
+debug_color = Color(0, 1, 0, 0.313726)
 
 [node name="Bottom Right" type="Sprite2D" parent="."]
 position = Vector2(8, -4)
@@ -62,3 +66,4 @@ hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Right/Area2D"]
 shape = SubResource("RectangleShape2D_y4f30")
+debug_color = Color(0, 1, 0, 0.313726)

@@ -1,16 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmask0erdc4mp"]
+[gd_scene load_steps=2 format=3 uid="uid://dmask0erdc4mp"]
 
 [ext_resource type="Texture2D" uid="uid://te5670iavnxh" path="res://sprites/working/player.png" id="1_4flbx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
-size = Vector2(20, 6)
 
 [node name="Player" type="CharacterBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -5)
 texture = ExtResource("1_4flbx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_4flbx")

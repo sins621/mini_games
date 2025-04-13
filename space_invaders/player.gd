@@ -12,6 +12,7 @@ func _physics_process(delta: float) -> void:
 		self.position.x -= SPEED * delta
 	if Input.is_action_pressed("move_right"):
 		self.position.x += SPEED * delta
+	self.position.x = clamp(self.position.x, 5, get_viewport_rect().size.x - 5)
 	if Input.is_action_pressed("fire") and not projectile:
 		projectile = bullet.instantiate()
 		owner.add_child(projectile)
