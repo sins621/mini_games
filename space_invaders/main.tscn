@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb32aa4elxq4g"]
+[gd_scene load_steps=7 format=3 uid="uid://bb32aa4elxq4g"]
 
 [ext_resource type="Script" uid="uid://bws6y4vmgjx2i" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dmask0erdc4mp" path="res://player.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dfarnaj4n8ey2" path="res://projectile.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cgwg7bx5m1i7s" path="res://enemy_1.tscn" id="2_7mycd"]
 [ext_resource type="Script" uid="uid://bro8371qvvwa6" path="res://player.gd" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://0b67qe3irdkl" path="res://wall.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_ig7tw")
+enemy_1_scene = ExtResource("2_7mycd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 320.0
@@ -24,3 +26,6 @@ position = Vector2(0, -12)
 
 [node name="Wall" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(159, 151)
+
+[node name="Enemy1" parent="." instance=ExtResource("2_7mycd")]
+position = Vector2(123, 91)
