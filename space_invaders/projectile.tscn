@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b13joab2h2xj1" path="res://projectile.gd" id="1_qxf0c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxf0c"]
-size = Vector2(4, 6.5)
+size = Vector2(4, 6)
 
 [node name="Projectile" type="CharacterBody2D"]
 script = ExtResource("1_qxf0c")
@@ -13,4 +13,5 @@ script = ExtResource("1_qxf0c")
 texture = ExtResource("1_a85iw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_qxf0c")

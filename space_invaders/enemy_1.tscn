@@ -15,8 +15,9 @@ texture = ExtResource("1_mbxyh")
 hframes = 2
 
 [node name="Hurtbox" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_pjquw")
 debug_color = Color(0, 1, 0, 0.313726)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

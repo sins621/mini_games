@@ -23,7 +23,7 @@ script = ExtResource("3_1bvp3")
 bullet = ExtResource("2_1bvp3")
 
 [node name="Marker2D" type="Marker2D" parent="Player"]
-position = Vector2(0, -12)
+position = Vector2(0, -17)
 
 [node name="Wall" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(159, 151)

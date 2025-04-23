@@ -19,4 +19,4 @@ func _physics_process(delta: float) -> void:
 		projectile.transform = $Marker2D.global_transform
 
 	if projectile and projectile.position.y < 0:
-		projectile = null
+		projectile.queue_free()
