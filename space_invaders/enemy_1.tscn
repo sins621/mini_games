@@ -6,10 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pjquw"]
 size = Vector2(18, 12)
 
-[node name="Enemy1" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "timer")]
+[node name="Enemy1" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_pjquw")
 sprite = NodePath("Sprite2D")
-timer = NodePath("Timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_mbxyh")
@@ -21,9 +20,3 @@ visible = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_pjquw")
 debug_color = Color(0, 1, 0, 0.313726)
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
