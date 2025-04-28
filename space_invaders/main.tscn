@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bb32aa4elxq4g"]
+[gd_scene load_steps=9 format=3 uid="uid://bb32aa4elxq4g"]
 
 [ext_resource type="Script" uid="uid://bws6y4vmgjx2i" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dmask0erdc4mp" path="res://player.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dfarnaj4n8ey2" path="res://projectile.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cgwg7bx5m1i7s" path="res://enemy_1.tscn" id="2_7mycd"]
 [ext_resource type="Script" uid="uid://bro8371qvvwa6" path="res://player.gd" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://blx3mc65orqc7" path="res://Enemy2.tscn" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://0b67qe3irdkl" path="res://wall.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bhdk2if8mi0pe" path="res://enemy_3.tscn" id="4_5vw27"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("timer")]
 script = ExtResource("1_ig7tw")
 enemy_1_scene = ExtResource("2_7mycd")
+enemy_2_scene = ExtResource("3_272bh")
+enemy_3_scene = ExtResource("4_5vw27")
 timer = NodePath("Timer")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -26,7 +30,7 @@ bullet = ExtResource("2_1bvp3")
 position = Vector2(0, -17)
 
 [node name="Wall" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(159, 151)
+position = Vector2(159, 159)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

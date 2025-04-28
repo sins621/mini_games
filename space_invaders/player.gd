@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 60
+@export var SPEED = 90
 @export var bullet : PackedScene
 var projectile: CharacterBody2D
 

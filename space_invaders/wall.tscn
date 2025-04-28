@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://0b67qe3irdkl"]
+[gd_scene load_steps=5 format=3 uid="uid://0b67qe3irdkl"]
 
 [ext_resource type="Texture2D" uid="uid://bh3niakhv772p" path="res://sprites/working/decay_edge.png" id="1_y4f30"]
 [ext_resource type="Texture2D" uid="uid://dcls8hfs3eos0" path="res://sprites/working/decay_square.png" id="2_iuee5"]
+[ext_resource type="Script" uid="uid://diciol35b06tk" path="res://wall_part.gd" id="2_xduj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4f30"]
 size = Vector2(6, 6)
@@ -14,6 +15,7 @@ texture = ExtResource("1_y4f30")
 centered = false
 flip_h = true
 hframes = 6
+script = ExtResource("2_xduj2")
 
 [node name="Area2D" type="Area2D" parent="Corner Right"]
 
@@ -67,3 +69,5 @@ hframes = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Right/Area2D"]
 shape = SubResource("RectangleShape2D_y4f30")
 debug_color = Color(0, 1, 0, 0.313726)
+
+[connection signal="body_entered" from="Corner Right/Area2D" to="Corner Right" method="_on_area_2d_body_entered"]

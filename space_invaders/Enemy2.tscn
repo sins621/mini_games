@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://blx3mc65orqc7"]
+
+[ext_resource type="Script" uid="uid://dsk7nwrt6gaag" path="res://enemy_1.gd" id="1_3n2en"]
+[ext_resource type="Texture2D" uid="uid://l2st13pvvm7" path="res://sprites/working/enemy_2.png" id="1_mym6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3n2en"]
+size = Vector2(18, 10)
+
+[node name="Enemy2" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_3n2en")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mym6m")
+hframes = 2
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_3n2en")
+debug_color = Color(0, 1, 0, 0.313726)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
