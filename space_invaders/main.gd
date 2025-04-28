@@ -7,53 +7,37 @@ extends Node2D
 
 signal tick
 signal change_direction
-var y_offset = 30
+
+var y_offset := 30
 
 func _ready() -> void:
-	for i in range(0, 8):
-		var new_enemy: CharacterBody2D = enemy_3_scene.instantiate()
-		new_enemy.global_position = Vector2(40, 0 + y_offset)
-		new_enemy.global_position.x += i * 25
-		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
-		new_enemy.connect("bullet_detected", _on_bullet_detected)
-		add_child(new_enemy)
-	for i in range(0, 8):
-		var new_enemy: CharacterBody2D = enemy_2_scene.instantiate()
-		new_enemy.global_position = Vector2(40, 15 + y_offset)
-		new_enemy.global_position.x += i * 25
-		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
-		new_enemy.connect("bullet_detected", _on_bullet_detected)
-		add_child(new_enemy)
-	for i in range(0, 8):
-		var new_enemy: CharacterBody2D = enemy_2_scene.instantiate()
-		new_enemy.global_position = Vector2(40, 30 + y_offset)
-		new_enemy.global_position.x += i * 25
-		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
-		new_enemy.connect("bullet_detected", _on_bullet_detected)
-		add_child(new_enemy)
-	for i in range(0, 8):
-		var new_enemy: CharacterBody2D = enemy_1_scene.instantiate()
-		new_enemy.global_position = Vector2(40, 45 + y_offset)
-		new_enemy.global_position.x += i * 25
-		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
-		new_enemy.connect("bullet_detected", _on_bullet_detected)
-		add_child(new_enemy)
-	for i in range(0, 8):
-		var new_enemy: CharacterBody2D = enemy_1_scene.instantiate()
-		new_enemy.global_position = Vector2(40, 60 + y_offset)
-		new_enemy.global_position.x += i * 25
+	var enemy_setup = [
+		{ "scene": enemy_3_scene, "row": 0 },
+		{ "scene": enemy_2_scene, "row": 15 },
+		{ "scene": enemy_2_scene, "row": 30 },
+		{ "scene": enemy_1_scene, "row": 45 },
+		{ "scene": enemy_1_scene, "row": 60 }
+	]
+	
+	for setup in enemy_setup:
+		spawn_enemy_row(setup["scene"], setup["row"] + y_offset)
+
+func spawn_enemy_row(scene: PackedScene, y_position: float) -> void:
+	for i in range(8):
+		var new_enemy: CharacterBody2D = scene.instantiate()
+		new_enemy.global_position = Vector2(40 + i * 25, y_position)
 		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
 		new_enemy.connect("bullet_detected", _on_bullet_detected)
 		add_child(new_enemy)
 
-func _on_out_of_bounds():
+func _on_out_of_bounds() -> void:
 	change_direction.emit()
 
 func _on_timer_timeout() -> void:
 	timer.start()
 	tick.emit()
 
-func _on_bullet_detected(node: CharacterBody2D):
+func _on_bullet_detected(node: CharacterBody2D) -> void:
 	if $Player.projectile:
 		$Player.projectile.queue_free()
 		node.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bb32aa4elxq4g"]
+[gd_scene load_steps=12 format=3 uid="uid://bb32aa4elxq4g"]
 
 [ext_resource type="Script" uid="uid://bws6y4vmgjx2i" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dmask0erdc4mp" path="res://player.tscn" id="2_0xm2m"]
@@ -8,6 +8,32 @@
 [ext_resource type="PackedScene" uid="uid://blx3mc65orqc7" path="res://Enemy2.tscn" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://0b67qe3irdkl" path="res://wall.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bhdk2if8mi0pe" path="res://enemy_3.tscn" id="4_5vw27"]
+[ext_resource type="Script" uid="uid://crkqbe1upv06c" path="res://canvas_layer.gd" id="5_4c57u"]
+[ext_resource type="Shader" uid="uid://rfk7i4u0n36r" path="res://vhs.gdshader" id="9_kek77"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
+shader = ExtResource("9_kek77")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.321
+shader_parameter/scanlines_width = 0.211
+shader_parameter/grille_opacity = 0.356
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.015
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("timer")]
 script = ExtResource("1_ig7tw")
@@ -15,6 +41,15 @@ enemy_1_scene = ExtResource("2_7mycd")
 enemy_2_scene = ExtResource("3_272bh")
 enemy_3_scene = ExtResource("4_5vw27")
 timer = NodePath("Timer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("5_4c57u")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_4c57u")
+offset_right = 320.0
+offset_bottom = 180.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 320.0
@@ -30,10 +65,26 @@ bullet = ExtResource("2_1bvp3")
 position = Vector2(0, -17)
 
 [node name="Wall" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(159, 159)
+position = Vector2(159, 155)
+
+[node name="Wall2" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(112, 155)
+
+[node name="Wall3" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(61, 155)
+
+[node name="Wall4" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(210, 155)
+
+[node name="Wall5" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(260, 154)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
+[node name="ShotDelay" type="Timer" parent="."]
+wait_time = 0.3
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ShotDelay" to="Player" method="_on_shot_delay_timeout"]

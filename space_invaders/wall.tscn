@@ -29,6 +29,7 @@ position = Vector2(-12, -16)
 texture = ExtResource("1_y4f30")
 centered = false
 hframes = 6
+script = ExtResource("2_xduj2")
 
 [node name="Area2D" type="Area2D" parent="Corner Left"]
 
@@ -41,6 +42,7 @@ debug_color = Color(0, 1, 0, 0.313726)
 position = Vector2(-8, -4)
 texture = ExtResource("2_iuee5")
 hframes = 6
+script = ExtResource("2_xduj2")
 
 [node name="Area2D" type="Area2D" parent="Bottom Left"]
 
@@ -52,6 +54,7 @@ debug_color = Color(0, 1, 0, 0.313726)
 position = Vector2(0, -12)
 texture = ExtResource("2_iuee5")
 hframes = 6
+script = ExtResource("2_xduj2")
 
 [node name="Area2D" type="Area2D" parent="Middle"]
 
@@ -63,6 +66,7 @@ debug_color = Color(0, 1, 0, 0.313726)
 position = Vector2(8, -4)
 texture = ExtResource("2_iuee5")
 hframes = 6
+script = ExtResource("2_xduj2")
 
 [node name="Area2D" type="Area2D" parent="Bottom Right"]
 
@@ -71,3 +75,7 @@ shape = SubResource("RectangleShape2D_y4f30")
 debug_color = Color(0, 1, 0, 0.313726)
 
 [connection signal="body_entered" from="Corner Right/Area2D" to="Corner Right" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Corner Left/Area2D" to="Corner Left" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Bottom Left/Area2D" to="Bottom Left" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Middle/Area2D" to="Middle" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Bottom Right/Area2D" to="Bottom Right" method="_on_area_2d_body_entered"]
