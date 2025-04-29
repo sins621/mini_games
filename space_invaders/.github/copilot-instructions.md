@@ -1,2 +1,0 @@
-When authoring commits make sure to prefix with type e.g. "feat/", "update/", "fix/", "refactor/" 
-and the description should never include spaces but instead use dashes. For example "feat/projectile-spawner-for-flyer"
