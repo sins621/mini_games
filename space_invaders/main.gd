@@ -3,6 +3,7 @@ extends Node2D
 @export var enemy_1_scene: PackedScene
 @export var enemy_2_scene: PackedScene
 @export var enemy_3_scene: PackedScene
+@export var enemy_flyer_scene: PackedScene
 @export var timer: Timer
 
 signal tick
@@ -10,6 +11,7 @@ signal change_direction
 
 var y_offset := 30
 var enemies := []
+var flyer: CharacterBody2D
 
 @onready var enemy_setup = [
 		{"scene": enemy_3_scene, "row": 0},
@@ -21,6 +23,10 @@ var enemies := []
 
 func _ready() -> void:
 	spawn_enemies()
+
+func _process(_delta: float) -> void:
+	if flyer and flyer.position.x > get_viewport_rect().size.x:
+		flyer = null
 
 func spawn_enemies():
 	for setup in enemy_setup:
@@ -41,6 +47,14 @@ func _on_out_of_bounds() -> void:
 func _on_timer_timeout() -> void:
 	timer.start()
 	tick.emit()
+	spawn_flyer()
+
+func spawn_flyer():
+	if randi() % 20 == 0 and !flyer:
+		print("Spawning Flyer")
+		flyer = enemy_flyer_scene.instantiate()
+		flyer.global_position = Vector2(0, 10)
+		add_child(flyer)
 
 func _on_bullet_detected(node: CharacterBody2D) -> void:
 	if $Player.projectile:
@@ -50,4 +64,4 @@ func _on_bullet_detected(node: CharacterBody2D) -> void:
 		if len(enemies) == 0:
 			call_deferred("spawn_enemies")
 			y_offset += 5
-			timer.wait_time = -0.1
+			timer.wait_time =- 0.1

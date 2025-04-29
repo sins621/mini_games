@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bb32aa4elxq4g"]
+[gd_scene load_steps=13 format=3 uid="uid://bb32aa4elxq4g"]
 
 [ext_resource type="Script" uid="uid://bws6y4vmgjx2i" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dmask0erdc4mp" path="res://player.tscn" id="2_0xm2m"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://0b67qe3irdkl" path="res://wall.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bhdk2if8mi0pe" path="res://enemy_3.tscn" id="4_5vw27"]
 [ext_resource type="Script" uid="uid://crkqbe1upv06c" path="res://canvas_layer.gd" id="5_4c57u"]
+[ext_resource type="PackedScene" uid="uid://scwbkg2mgv3s" path="res://enemy_flyer.tscn" id="5_efxa6"]
 [ext_resource type="Shader" uid="uid://rfk7i4u0n36r" path="res://vhs.gdshader" id="9_kek77"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
@@ -40,6 +41,7 @@ script = ExtResource("1_ig7tw")
 enemy_1_scene = ExtResource("2_7mycd")
 enemy_2_scene = ExtResource("3_272bh")
 enemy_3_scene = ExtResource("4_5vw27")
+enemy_flyer_scene = ExtResource("5_efxa6")
 timer = NodePath("Timer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
