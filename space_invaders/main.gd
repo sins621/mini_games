@@ -9,16 +9,20 @@ signal tick
 signal change_direction
 
 var y_offset := 30
+var enemies := []
+
+@onready var enemy_setup = [
+		{"scene": enemy_3_scene, "row": 0},
+		{"scene": enemy_2_scene, "row": 15},
+		{"scene": enemy_2_scene, "row": 30},
+		{"scene": enemy_1_scene, "row": 45},
+		{"scene": enemy_1_scene, "row": 60}
+	]
 
 func _ready() -> void:
-	var enemy_setup = [
-		{ "scene": enemy_3_scene, "row": 0 },
-		{ "scene": enemy_2_scene, "row": 15 },
-		{ "scene": enemy_2_scene, "row": 30 },
-		{ "scene": enemy_1_scene, "row": 45 },
-		{ "scene": enemy_1_scene, "row": 60 }
-	]
-	
+	spawn_enemies()
+
+func spawn_enemies():
 	for setup in enemy_setup:
 		spawn_enemy_row(setup["scene"], setup["row"] + y_offset)
 
@@ -28,6 +32,7 @@ func spawn_enemy_row(scene: PackedScene, y_position: float) -> void:
 		new_enemy.global_position = Vector2(40 + i * 25, y_position)
 		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
 		new_enemy.connect("bullet_detected", _on_bullet_detected)
+		enemies.append(new_enemy)
 		add_child(new_enemy)
 
 func _on_out_of_bounds() -> void:
@@ -41,3 +46,8 @@ func _on_bullet_detected(node: CharacterBody2D) -> void:
 	if $Player.projectile:
 		$Player.projectile.queue_free()
 		node.queue_free()
+		enemies.erase(node)
+		if len(enemies) == 0:
+			call_deferred("spawn_enemies")
+			y_offset += 5
+			timer.wait_time = -0.1
