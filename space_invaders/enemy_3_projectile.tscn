@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2ssx2ukxbcf6"]
+
+[ext_resource type="Script" uid="uid://dhxb0igjjojgc" path="res://enemy_3_projectile.gd" id="1_cfqb4"]
+[ext_resource type="Texture2D" uid="uid://dqrk0oqkunkxm" path="res://sprites/working/enemy_3_projectile.png" id="2_0o8aa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moto4"]
+size = Vector2(2, 4)
+
+[node name="Enemy3Projectile" type="CharacterBody2D"]
+script = ExtResource("1_cfqb4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0o8aa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_moto4")

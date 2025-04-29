@@ -51,7 +51,6 @@ func _on_timer_timeout() -> void:
 
 func spawn_flyer():
 	if randi() % 20 == 0 and !flyer:
-		print("Spawning Flyer")
 		flyer = enemy_flyer_scene.instantiate()
 		flyer.global_position = Vector2(0, 10)
 		add_child(flyer)
@@ -64,4 +63,4 @@ func _on_bullet_detected(node: CharacterBody2D) -> void:
 		if len(enemies) == 0:
 			call_deferred("spawn_enemies")
 			y_offset += 5
-			timer.wait_time =- 0.1
+			timer.wait_time *= 0.9
