@@ -7,6 +7,7 @@ extends Node2D
 @export var timer: Timer
 @onready var level_label = $Level
 var level = 0
+var score = 0
 
 signal tick
 signal change_direction
@@ -25,6 +26,7 @@ var flyer: CharacterBody2D
 
 func _ready() -> void:
 	spawn_enemies()
+	update_score_label()
 
 func _process(_delta: float) -> void:
 	if flyer and flyer.position.x > get_viewport_rect().size.x:
@@ -65,3 +67,10 @@ func spawn_flyer():
 		flyer = enemy_flyer_scene.instantiate()
 		flyer.global_position = Vector2(0, 10)
 		add_child(flyer)
+		
+func add_score(points: int) -> void:
+	score += points
+	update_score_label()
+	
+func update_score_label() -> void:
+	$Score.text = "Score: " + str(score)

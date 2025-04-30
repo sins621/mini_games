@@ -22,7 +22,7 @@ func _process(_delta):
 		out_of_bounds.emit()
 	if self.position.y >= 140:
 		get_tree().change_scene_to_file("res://game_over.tscn")
-
+	
 
 func _on_tick():
 	if !dying and sprite.frame == 0:
@@ -48,6 +48,7 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		dying = true
 		direction = 0
 		sprite.frame = 2
+		parent.add_score(10)
 		body.queue_free()
 		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		await get_tree().create_timer(0.5).timeout
