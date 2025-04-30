@@ -36,5 +36,8 @@ func _on_change_direction():
 		should_change_direction = false
 		direction *= -1
 
-func _on_hurtbox_body_entered(_body: Node2D) -> void:
-		bullet_detected.emit(self)
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+		if body.name != "Projectile":
+			return
+		body.queue_free()
+		self.queue_free()

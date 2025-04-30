@@ -11,4 +11,4 @@ func _on_area_2d_body_entered(body):
 		self.queue_free()
 		return
 	self.frame += 1
-	body.queue_free()
+	# body.queue_free()

@@ -37,7 +37,7 @@ func spawn_enemy_row(scene: PackedScene, y_position: float) -> void:
 		var new_enemy: CharacterBody2D = scene.instantiate()
 		new_enemy.global_position = Vector2(40 + i * 25, y_position)
 		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
-		new_enemy.connect("bullet_detected", _on_bullet_detected)
+		# new_enemy.connect("bullet_detected", _on_bullet_detected)
 		enemies.append(new_enemy)
 		add_child(new_enemy)
 
@@ -55,12 +55,12 @@ func spawn_flyer():
 		flyer.global_position = Vector2(0, 10)
 		add_child(flyer)
 
-func _on_bullet_detected(node: CharacterBody2D) -> void:
-	if $Player.projectile:
-		$Player.projectile.queue_free()
-		node.queue_free()
-		enemies.erase(node)
-		if len(enemies) == 0:
-			call_deferred("spawn_enemies")
-			y_offset += 5
-			timer.wait_time *= 0.9
+# func _on_bullet_detected(node: CharacterBody2D) -> void:
+# 	if $Player.projectile:
+# 		$Player.projectile.queue_free()
+# 		node.queue_free()
+# 		enemies.erase(node)
+# 		if len(enemies) == 0:
+# 			call_deferred("spawn_enemies")
+# 			y_offset += 5
+# 			timer.wait_time *= 0.9
