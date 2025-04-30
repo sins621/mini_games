@@ -12,7 +12,7 @@ sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_mbxyh")
-hframes = 2
+hframes = 3
 
 [node name="Hurtbox" type="Area2D" parent="."]
 
