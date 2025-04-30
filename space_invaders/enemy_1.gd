@@ -20,6 +20,9 @@ func _ready():
 func _process(_delta):
 	if self.position.x > get_viewport_rect().size.x - bounds_offset or self.position.x < bounds_offset:
 		out_of_bounds.emit()
+	if self.position.y >= 140:
+		get_tree().change_scene_to_file("res://game_over.tscn")
+
 
 func _on_tick():
 	if !dying and sprite.frame == 0:

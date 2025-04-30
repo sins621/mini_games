@@ -6,6 +6,7 @@ var projectile: CharacterBody2D
 var can_fire = true
 @onready var timer: Timer = $"../ShotDelay"
 var lives = 3
+@onready var label = $"../Lives"
 
 func _ready() -> void:
 	pass
@@ -31,8 +32,9 @@ func _on_shot_delay_timeout():
 		can_fire = true
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	body.queue_free()
 	lives -= 1
-	print(lives)
+	label.text = "Lives: " + str(lives)
 	if lives == 0:
 		call_deferred("game_over")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bb32aa4elxq4g"]
+[gd_scene load_steps=15 format=3 uid="uid://bb32aa4elxq4g"]
 
 [ext_resource type="Script" uid="uid://bws6y4vmgjx2i" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dmask0erdc4mp" path="res://player.tscn" id="2_0xm2m"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://crkqbe1upv06c" path="res://canvas_layer.gd" id="5_4c57u"]
 [ext_resource type="PackedScene" uid="uid://scwbkg2mgv3s" path="res://enemy_flyer.tscn" id="5_efxa6"]
 [ext_resource type="Shader" uid="uid://rfk7i4u0n36r" path="res://vhs.gdshader" id="9_kek77"]
+[ext_resource type="FontFile" uid="uid://cyoidli62u8c4" path="res://PublicPixel.ttf" id="12_dg77c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
 shader = ExtResource("9_kek77")
@@ -96,6 +97,33 @@ autostart = true
 
 [node name="ShotDelay" type="Timer" parent="."]
 wait_time = 0.3
+
+[node name="Lives" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 5.0
+offset_right = 73.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("12_dg77c")
+theme_override_font_sizes/font_size = 8
+text = "Lives: 3"
+
+[node name="Score" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 16.0
+offset_right = 65.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("12_dg77c")
+theme_override_font_sizes/font_size = 8
+text = "Score: 0"
+
+[node name="Level" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 27.0
+offset_right = 73.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("12_dg77c")
+theme_override_font_sizes/font_size = 8
+text = "Level: 1"
 
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

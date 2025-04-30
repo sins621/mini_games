@@ -5,6 +5,8 @@ extends Node2D
 @export var enemy_3_scene: PackedScene
 @export var enemy_flyer_scene: PackedScene
 @export var timer: Timer
+@onready var level_label = $Level
+var level = 0
 
 signal tick
 signal change_direction
@@ -29,6 +31,8 @@ func _process(_delta: float) -> void:
 		flyer = null
 
 func spawn_enemies():
+	level += 1
+	level_label.text = "Level: " + str(level)
 	for setup in enemy_setup:
 		spawn_enemy_row(setup["scene"], setup["row"] + y_offset)
 
