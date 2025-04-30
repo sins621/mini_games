@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4e8ryjoi2geb" path="res://enemy_3.gd" id="1_dxyk6"]
 [ext_resource type="Texture2D" uid="uid://djhj4vpemamui" path="res://sprites/working/enemy_3.png" id="2_dxyk6"]
-[ext_resource type="PackedScene" uid="uid://c2ssx2ukxbcf6" path="res://enemy_3_projectile.tscn" id="2_no5mw"]
+[ext_resource type="PackedScene" uid="uid://44cg7n5b8wfq" path="res://enemy_3_projectile.tscn" id="2_no5mw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v15ab"]
 size = Vector2(10, 10)
@@ -14,7 +14,7 @@ projectile_scene = ExtResource("2_no5mw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_dxyk6")
-hframes = 2
+hframes = 3
 
 [node name="Hurtbox" type="Area2D" parent="."]
 

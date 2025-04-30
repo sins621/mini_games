@@ -43,8 +43,8 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		if body.name != "Projectile":
 			return
 		dying = true
+		direction = 0
 		sprite.frame = 2
-		# delay by 0.5 seconds
 		body.queue_free()
 		$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 		await get_tree().create_timer(0.5).timeout

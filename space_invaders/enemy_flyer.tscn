@@ -11,9 +11,12 @@ script = ExtResource("1_r228l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_neo6n")
+hframes = 2
 
 [node name="Hurtbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_r228l")
 debug_color = Color(0, 1, 0, 0.313726)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

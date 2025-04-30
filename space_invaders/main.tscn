@@ -68,23 +68,18 @@ bullet = ExtResource("2_1bvp3")
 position = Vector2(0, -17)
 
 [node name="Wall" parent="." instance=ExtResource("3_h2yge")]
-visible = false
 position = Vector2(159, 155)
 
 [node name="Wall2" parent="." instance=ExtResource("3_h2yge")]
-visible = false
 position = Vector2(112, 155)
 
 [node name="Wall3" parent="." instance=ExtResource("3_h2yge")]
-visible = false
 position = Vector2(61, 155)
 
 [node name="Wall4" parent="." instance=ExtResource("3_h2yge")]
-visible = false
 position = Vector2(210, 155)
 
 [node name="Wall5" parent="." instance=ExtResource("3_h2yge")]
-visible = false
 position = Vector2(260, 154)
 
 [node name="Timer" type="Timer" parent="."]
