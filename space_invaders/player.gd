@@ -28,3 +28,6 @@ func _physics_process(delta: float) -> void:
 func _on_shot_delay_timeout():
 	if can_fire == false:
 		can_fire = true
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print(body)

@@ -27,10 +27,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if flyer and flyer.position.x > get_viewport_rect().size.x:
 		flyer = null
-	if len(enemies) == 0:
-		call_deferred("spawn_enemies")
-		y_offset += 5
-		timer.wait_time *= 0.9
 
 func spawn_enemies():
 	for setup in enemy_setup:
@@ -47,7 +43,10 @@ func spawn_enemy_row(scene: PackedScene, y_position: float) -> void:
 
 func _on_enemy_destroyed(enemy: CharacterBody2D) -> void:
 	enemies.erase(enemy)
-	print(len(enemies))
+	if len(enemies) == 0:
+		call_deferred("spawn_enemies")
+		y_offset += 5
+		timer.wait_time *= 0.9
 
 func _on_out_of_bounds() -> void:
 	change_direction.emit()
