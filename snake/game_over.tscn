@@ -73,6 +73,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_8u835")
 text = "RESTART"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_8u835")
