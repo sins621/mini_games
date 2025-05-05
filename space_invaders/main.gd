@@ -42,8 +42,8 @@ func spawn_enemy_row(scene: PackedScene, y_position: float) -> void:
 	for i in range(8):
 		var new_enemy: CharacterBody2D = scene.instantiate()
 		new_enemy.global_position = Vector2(40 + i * 25, y_position)
-		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
 		new_enemy.connect("tree_exiting", _on_enemy_destroyed.bind(new_enemy))
+		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
 		enemies.append(new_enemy)
 		add_child(new_enemy)
 
@@ -54,7 +54,7 @@ func _on_enemy_destroyed(enemy: CharacterBody2D) -> void:
 		y_offset += 5
 		timer.wait_time *= 0.9
 
-func _on_out_of_bounds() -> void:
+func _on_out_of_bounds():
 	change_direction.emit()
 
 func _on_timer_timeout() -> void:

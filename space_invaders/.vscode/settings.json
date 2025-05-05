@@ -9,7 +9,8 @@
     "*.editorconfig": true,
     "*.gitattributes": true,
     "*.tscn": true,
-    ".godot/": true,
     "*.cfg": true,
+    "*.import": true,
+    ".godot/": true,
 }
 }
