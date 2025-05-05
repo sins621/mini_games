@@ -1,7 +1,15 @@
 {
-    "godotTools.editorPath.godot4": "/home/sins/Applications/Godot/Godot.x86_64",
+    "godotTools.editorPath.godot4": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\Godot Engine\\godot.windows.opt.tools.64.exe",
     "editor.insertSpaces": false,
     "editor.tabSize": 4,
     "godotTools.formatter.maxEmptyLines": "1",
-    "editor.autoClosingBrackets": "always"
+    "editor.autoClosingBrackets": "always",
+    "files.exclude" : {
+    "*.uid": true,
+    "*.editorconfig": true,
+    "*.gitattributes": true,
+    "*.tscn": true,
+    ".godot/": true,
+    "*.cfg": true,
+}
 }

@@ -22,9 +22,10 @@ func _process(_delta):
 		out_of_bounds.emit()
 	if self.position.y >= 140:
 		get_tree().change_scene_to_file("res://game_over.tscn")
-	
 
 func _on_tick():
+	print("Should move down: " + str(should_move_down))
+	print("Should change direction: " + str(should_change_direction))
 	if !dying and sprite.frame == 0:
 		sprite.frame = 1
 	elif !dying and sprite.frame == 1:
@@ -33,7 +34,6 @@ func _on_tick():
 		self.position.y += 1 * down_distance
 		should_move_down = false
 	else:
-		should_change_direction = true
 		self.position.x += direction
 
 func _on_change_direction():
