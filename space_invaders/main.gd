@@ -17,9 +17,9 @@ var enemies := []
 var flyer: CharacterBody2D
 
 @onready var enemy_setup = [
-		{"scene": enemy_3_scene, "row": 0},
-		{"scene": enemy_2_scene, "row": 15},
-		{"scene": enemy_2_scene, "row": 30},
+		#{"scene": enemy_3_scene, "row": 0},
+		#{"scene": enemy_2_scene, "row": 15},
+		#{"scene": enemy_2_scene, "row": 30},
 		{"scene": enemy_1_scene, "row": 45},
 		{"scene": enemy_1_scene, "row": 60}
 	]

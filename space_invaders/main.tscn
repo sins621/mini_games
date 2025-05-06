@@ -125,6 +125,15 @@ theme_override_fonts/font = ExtResource("12_dg77c")
 theme_override_font_sizes/font_size = 8
 text = "Level: 1"
 
+[node name="Debug" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 229.0
+offset_right = 320.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 9
+text = "Debug:"
+autowrap_mode = 2
+
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ShotDelay" to="Player" method="_on_shot_delay_timeout"]

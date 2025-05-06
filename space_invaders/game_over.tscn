@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://spwpbp6xtahx"]
 
-[ext_resource type="Script" uid="uid://t1rtqrj8o68q" path="res://game_over.gd" id="1_8u835"]
+[ext_resource type="Script" path="res://game_over.gd" id="1_8u835"]
 [ext_resource type="FontFile" uid="uid://cyoidli62u8c4" path="res://PublicPixel.ttf" id="1_y26ei"]
 [ext_resource type="Script" uid="uid://crkqbe1upv06c" path="res://canvas_layer.gd" id="2_ccer4"]
 [ext_resource type="Shader" uid="uid://rfk7i4u0n36r" path="res://vhs.gdshader" id="3_8u835"]
