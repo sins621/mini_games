@@ -34,10 +34,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if flyer and flyer.position.x > get_viewport_rect().size.x:
 		flyer = null
+	if enemies:
+		for enemy in enemies:
+			if detect_loss(enemy):
+				get_tree().change_scene_to_file("res://game_over.tscn")
 
 func spawn_enemies():
 	level += 1
 	level_label.text = "Level: " + str(level)
+	if level != 1: $Spawn.play()
 	for setup in enemy_setup:
 		spawn_enemy_row(setup["scene"], setup["row"] + y_offset)
 
@@ -60,12 +65,10 @@ func _on_timer_timeout() -> void:
 	timer.start()
 	tick.emit()
 	spawn_flyer()
-	
 	for enemy in enemies:
 		if detect_edge(enemy):
 			should_move_down = true
 			break
-	
 	if should_move_down:
 		if should_change_direction:
 			direction.x *= -1
@@ -81,8 +84,8 @@ func _on_timer_timeout() -> void:
 		for enemy in enemies:
 			move_enemy(enemy, direction)
 
-func move_enemy(enemy, direction):
-	enemy.position += direction
+func move_enemy(enemy, enemy_direction):
+	enemy.position += enemy_direction
 
 func detect_edge(enemy):
 	var offset = 20
