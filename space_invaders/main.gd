@@ -67,10 +67,10 @@ func spawn_flyer():
 		flyer = enemy_flyer_scene.instantiate()
 		flyer.global_position = Vector2(0, 10)
 		add_child(flyer)
-		
+
 func add_score(points: int) -> void:
 	score += points
 	update_score_label()
-	
+
 func update_score_label() -> void:
 	$Score.text = "Score: " + str(score)
