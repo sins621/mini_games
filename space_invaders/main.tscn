@@ -139,15 +139,6 @@ theme_override_fonts/font = ExtResource("12_dg77c")
 theme_override_font_sizes/font_size = 8
 text = "Level: 1"
 
-[node name="Debug" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 229.0
-offset_right = 320.0
-offset_bottom = 43.0
-theme_override_font_sizes/font_size = 9
-text = "Debug:"
-autowrap_mode = 2
-
 [node name="Spawn" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_ycdy4")
 volume_db = -3.71

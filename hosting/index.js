@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/game/pong", express.static(path.join(__dirname, "public", "pong")));
 app.use("/game/snake", express.static(path.join(__dirname, "public", "snake")));
+app.use("/game/space_invaders", express.static(path.join(__dirname, "public", "space_invaders")));
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running at http://localhost:${PORT}`);

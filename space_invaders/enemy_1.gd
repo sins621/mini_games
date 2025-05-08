@@ -17,7 +17,6 @@ func _ready():
 	parent = get_parent()
 	parent.connect("tick", _on_tick)
 	screen_size = get_viewport_rect().size
-	debug_label = parent.get_node("%Debug")
  
 func _on_tick():
 	if current_state != State.DYING and sprite.frame == 0:
