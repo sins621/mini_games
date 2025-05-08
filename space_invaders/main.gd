@@ -16,6 +16,8 @@ signal tick
 var y_offset := 30
 var enemies := []
 var flyer: CharacterBody2D
+var should_change_direction = false
+var should_move_down = false
 
 @onready var enemy_setup = [
 		{"scene": enemy_3_scene, "row": 0},
@@ -60,7 +62,24 @@ func _on_timer_timeout() -> void:
 	spawn_flyer()
 	
 	for enemy in enemies:
-		move_enemy(enemy, direction)
+		if detect_edge(enemy):
+			should_move_down = true
+			break
+	
+	if should_move_down:
+		if should_change_direction:
+			direction.x *= -1
+			for enemy in enemies:
+				move_enemy(enemy, direction)
+			should_move_down = false
+			should_change_direction = false
+		else:
+			for enemy in enemies:
+				move_enemy(enemy, Vector2(0, 10))
+				should_change_direction = true
+	else:
+		for enemy in enemies:
+			move_enemy(enemy, direction)
 
 func move_enemy(enemy, direction):
 	enemy.position += direction
