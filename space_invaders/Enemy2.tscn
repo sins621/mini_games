@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://blx3mc65orqc7"]
+[gd_scene load_steps=5 format=3 uid="uid://blx3mc65orqc7"]
 
 [ext_resource type="Script" uid="uid://c8ihe21uho3np" path="res://enemy_2.gd" id="1_3n2en"]
 [ext_resource type="Texture2D" uid="uid://l2st13pvvm7" path="res://sprites/working/enemy_2.png" id="1_mym6m"]
+[ext_resource type="AudioStream" uid="uid://codlboy5ayuce" path="res://sound/explosion.wav" id="3_3buae"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3n2en"]
 size = Vector2(18, 10)
@@ -19,5 +20,9 @@ hframes = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_3n2en")
 debug_color = Color(0, 1, 0, 0.313726)
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3buae")
+volume_db = -3.855
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
