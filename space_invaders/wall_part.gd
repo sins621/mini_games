@@ -7,6 +7,7 @@ func _process(_delta):
 	pass
 
 func _on_area_2d_body_entered(body):
+	$"../WallHit".play()
 	if self.frame == 5:
 		self.queue_free()
 		return

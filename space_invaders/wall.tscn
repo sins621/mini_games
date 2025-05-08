@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://0b67qe3irdkl"]
+[gd_scene load_steps=6 format=3 uid="uid://0b67qe3irdkl"]
 
 [ext_resource type="Texture2D" uid="uid://bh3niakhv772p" path="res://sprites/working/decay_edge.png" id="1_y4f30"]
 [ext_resource type="Texture2D" uid="uid://dcls8hfs3eos0" path="res://sprites/working/decay_square.png" id="2_iuee5"]
 [ext_resource type="Script" uid="uid://diciol35b06tk" path="res://wall_part.gd" id="2_xduj2"]
+[ext_resource type="AudioStream" uid="uid://gaqmtuber6bo" path="res://sound/impact.wav" id="4_xduj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4f30"]
 size = Vector2(6, 6)
@@ -73,6 +74,10 @@ script = ExtResource("2_xduj2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Right/Area2D"]
 shape = SubResource("RectangleShape2D_y4f30")
 debug_color = Color(0, 1, 0, 0.313726)
+
+[node name="WallHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xduj2")
+volume_db = -0.615
 
 [connection signal="body_entered" from="Corner Right/Area2D" to="Corner Right" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Corner Left/Area2D" to="Corner Left" method="_on_area_2d_body_entered"]

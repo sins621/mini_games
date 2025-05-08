@@ -9,6 +9,8 @@ func _process(delta: float) -> void:
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.name != "Projectile":
 		return
+	$Death.pitch_scale = (randf() * 0.4) + 1.2
+	$Death.play()
 	speed = 0
 	sprite.frame = 1
 	body.queue_free()
