@@ -6,20 +6,21 @@ extends Node2D
 @export var enemy_flyer_scene: PackedScene
 @export var timer: Timer
 @onready var level_label = $Level
+
 var level = 0
 var score = 0
+var direction: Vector2 = Vector2(10, 0)
 
 signal tick
-signal change_direction
 
 var y_offset := 30
 var enemies := []
 var flyer: CharacterBody2D
 
 @onready var enemy_setup = [
-		#{"scene": enemy_3_scene, "row": 0},
-		#{"scene": enemy_2_scene, "row": 15},
-		#{"scene": enemy_2_scene, "row": 30},
+		{"scene": enemy_3_scene, "row": 0},
+		{"scene": enemy_2_scene, "row": 15},
+		{"scene": enemy_2_scene, "row": 30},
 		{"scene": enemy_1_scene, "row": 45},
 		{"scene": enemy_1_scene, "row": 60}
 	]
@@ -43,7 +44,6 @@ func spawn_enemy_row(scene: PackedScene, y_position: float) -> void:
 		var new_enemy: CharacterBody2D = scene.instantiate()
 		new_enemy.global_position = Vector2(40 + i * 25, y_position)
 		new_enemy.connect("tree_exiting", _on_enemy_destroyed.bind(new_enemy))
-		new_enemy.connect("out_of_bounds", _on_out_of_bounds)
 		enemies.append(new_enemy)
 		add_child(new_enemy)
 
@@ -54,13 +54,30 @@ func _on_enemy_destroyed(enemy: CharacterBody2D) -> void:
 		y_offset += 5
 		timer.wait_time *= 0.9
 
-func _on_out_of_bounds():
-	change_direction.emit()
-
 func _on_timer_timeout() -> void:
 	timer.start()
 	tick.emit()
 	spawn_flyer()
+	
+	for enemy in enemies:
+		move_enemy(enemy, direction)
+
+func move_enemy(enemy, direction):
+	enemy.position += direction
+
+func detect_edge(enemy):
+	var offset = 20
+	var screen_width = get_viewport_rect().size.x
+	if enemy.position.x > screen_width - offset:
+		return true
+	if enemy.position.x < 0 + offset:
+		return true
+	return false
+
+func detect_loss(enemy):
+	if enemy.position.y > 130:
+		return true
+	return false
 
 func spawn_flyer():
 	if randi() % 20 == 0 and !flyer:
