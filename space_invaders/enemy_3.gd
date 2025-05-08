@@ -19,6 +19,10 @@ func _on_tick():
 		sprite.frame = 1
 	elif !dying and sprite.frame == 1:
 		sprite.frame = 0
+	if randi() % 20 == 0 and !projectile:
+		projectile = projectile_scene.instantiate()
+		projectile.global_position = self.global_position
+		parent.add_child(projectile)
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.name != "Projectile":

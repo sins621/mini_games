@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bb32aa4elxq4g"]
+[gd_scene load_steps=21 format=3 uid="uid://bb32aa4elxq4g"]
 
 [ext_resource type="Script" uid="uid://bws6y4vmgjx2i" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://dmask0erdc4mp" path="res://player.tscn" id="2_0xm2m"]
@@ -11,9 +11,12 @@
 [ext_resource type="Script" uid="uid://crkqbe1upv06c" path="res://canvas_layer.gd" id="5_4c57u"]
 [ext_resource type="PackedScene" uid="uid://scwbkg2mgv3s" path="res://enemy_flyer.tscn" id="5_efxa6"]
 [ext_resource type="Shader" uid="uid://rfk7i4u0n36r" path="res://vhs.gdshader" id="9_kek77"]
+[ext_resource type="Texture2D" uid="uid://te5670iavnxh" path="res://sprites/working/player.png" id="11_2cqfq"]
+[ext_resource type="Shader" uid="uid://xyw8afjt6lot" path="res://flash.gdshader" id="11_yaehf"]
 [ext_resource type="FontFile" uid="uid://cyoidli62u8c4" path="res://PublicPixel.ttf" id="12_dg77c"]
 [ext_resource type="AudioStream" uid="uid://dl3ctta53qfvh" path="res://sound/powerUp.wav" id="13_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://ca2dhlw7hc12y" path="res://sound/laserShoot.wav" id="14_w48qg"]
+[ext_resource type="AudioStream" uid="uid://dl168oxtejkvn" path="res://sound/hitHurt.wav" id="15_vivmo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
 shader = ExtResource("9_kek77")
@@ -38,6 +41,10 @@ shader_parameter/warp_amount = 0.225
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_074og"]
+shader = ExtResource("11_yaehf")
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_efxa6"]
 size = Vector2(22, 9)
@@ -71,6 +78,11 @@ bullet = ExtResource("2_1bvp3")
 
 [node name="Marker2D" type="Marker2D" parent="Player"]
 position = Vector2(0, -17)
+
+[node name="PlayerSprite" type="Sprite2D" parent="Player"]
+material = SubResource("ShaderMaterial_074og")
+position = Vector2(0, -5)
+texture = ExtResource("11_2cqfq")
 
 [node name="Area2D" type="Area2D" parent="Player"]
 
@@ -142,6 +154,11 @@ volume_db = -3.71
 
 [node name="Shoot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_w48qg")
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_vivmo")
+volume_db = -1.225
+pitch_scale = 0.7
 
 [connection signal="body_entered" from="Player/Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

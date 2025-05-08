@@ -34,6 +34,7 @@ func _on_shot_delay_timeout():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	body.queue_free()
+	$"../Hurt".play()
 	lives -= 1
 	label.text = "Lives: " + str(lives)
 	if lives == 0:
