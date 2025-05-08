@@ -28,6 +28,9 @@ func _on_tick():
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.name != "Projectile":
 		return
+	$Death.pitch_scale = (randf() * 0.4) + 0.8
+	print($Death.pitch_scale)
+	$Death.play()
 	current_state = State.DYING
 	direction = 0
 	sprite.frame = 2

@@ -18,6 +18,7 @@ func _physics_process(delta: float) -> void:
 		self.position.x += SPEED * delta
 	self.position.x = clamp(self.position.x, 5, get_viewport_rect().size.x - 5)
 	if Input.is_action_pressed("fire") and can_fire and not projectile:
+		$"../Shoot".play()
 		projectile = bullet.instantiate()
 		owner.add_child(projectile)
 		projectile.transform = $Marker2D.global_transform
