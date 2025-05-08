@@ -1,4 +1,4 @@
 extends CanvasLayer
 
-#func _ready():
-	#self.visible = true
+func _ready():
+	self.visible = true
