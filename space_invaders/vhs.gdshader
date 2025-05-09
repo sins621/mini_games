@@ -29,12 +29,12 @@ uniform bool roll = true;
 uniform float roll_speed = 8.0; // Positive values are down, negative are up
 uniform float roll_size : hint_range(0.0, 100.0) = 15.0;
 uniform float roll_variation : hint_range(0.1, 5.0) = 1.8; // This valie is not an exact science. You have to play around with the value to find a look you like. How this works is explained in the code below.
-uniform float distort_intensity : hint_range(0.0, 0.2) = 0.05; // The distortion created by the rolling effect.
+uniform float distort_intensity : hint_range(0.0, 0.2) = 0.01; // The distortion created by the rolling effect.
 
 uniform float noise_opacity : hint_range(0.0, 1.0) = 0.4;
 uniform float noise_speed = 5.0; // There is a movement in the noise pattern that can be hard to see first. This sets the speed of that movement.
 
-uniform float static_noise_intensity : hint_range(0.0, 1.0) = 0.06;
+uniform float static_noise_intensity : hint_range(0.0, 0.2) = 0.02;
 
 uniform float aberration : hint_range(-1.0, 1.0) = 0.03; // Chromatic aberration, a distortion on each color channel.
 uniform float brightness = 1.4; // When adding scanline gaps and grille the image can get very dark. Brightness tries to compensate for that.
