@@ -24,6 +24,6 @@ jobs:
             cd mini_games
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            pm2 stop games
+            pm2 stop minigames
             git pull
-            pm2 start games
+            pm2 start minigames
