@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 
 func spawn_enemies():
 	level += 1
-	level_label.text = "Level: " + str(level)
+	level_label.text = "Levels: " + str(level)
 	if level > 1: $Spawn.play()
 	for setup in enemy_setup:
 		spawn_enemy_row(setup["scene"], setup["row"] + y_offset)
