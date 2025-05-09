@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://spwpbp6xtahx"]
 
-[ext_resource type="Script" path="res://game_over.gd" id="1_8u835"]
+[ext_resource type="Script" uid="uid://t1rtqrj8o68q" path="res://game_over.gd" id="1_8u835"]
 [ext_resource type="FontFile" uid="uid://cyoidli62u8c4" path="res://PublicPixel.ttf" id="1_y26ei"]
 [ext_resource type="Script" uid="uid://crkqbe1upv06c" path="res://canvas_layer.gd" id="2_ccer4"]
 [ext_resource type="Shader" uid="uid://rfk7i4u0n36r" path="res://vhs.gdshader" id="3_8u835"]
@@ -63,5 +63,14 @@ material = SubResource("ShaderMaterial_ftari")
 offset_right = 321.0
 offset_bottom = 180.0
 mouse_filter = 2
+
+[node name="HighScore" type="Label" parent="."]
+offset_left = 91.0
+offset_top = 58.0
+offset_right = 171.0
+offset_bottom = 81.0
+theme_override_fonts/font = ExtResource("1_y26ei")
+theme_override_font_sizes/font_size = 8
+text = "High Score"
 
 [connection signal="pressed" from="Button" to="." method="_on_restart_button_pressed"]

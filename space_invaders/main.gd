@@ -8,7 +8,6 @@ extends Node2D
 @onready var level_label = $Level
 
 var level = 0
-var score = 0
 var direction: Vector2 = Vector2(10, 0)
 
 signal tick
@@ -28,6 +27,7 @@ var should_move_down = false
 	]
 
 func _ready() -> void:
+	Global.high_score = 0
 	spawn_enemies()
 	update_score_label()
 
@@ -42,7 +42,7 @@ func _process(_delta: float) -> void:
 func spawn_enemies():
 	level += 1
 	level_label.text = "Level: " + str(level)
-	if level != 1: $Spawn.play()
+	if level > 1: $Spawn.play()
 	for setup in enemy_setup:
 		spawn_enemy_row(setup["scene"], setup["row"] + y_offset)
 
@@ -108,8 +108,8 @@ func spawn_flyer():
 		add_child(flyer)
 
 func add_score(points: int) -> void:
-	score += points
+	Global.high_score += points
 	update_score_label()
 
 func update_score_label() -> void:
-	$Score.text = "Score: " + str(score)
+	$Score.text = "Score: " + str(Global.high_score)
