@@ -30,7 +30,6 @@ app.use(
 );
 
 const server = http.createServer(app);
-
 const wss = new WebSocketServer({ noServer: true });
 
 server.on("upgrade", (req, socket, head) => {
