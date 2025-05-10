@@ -1,6 +1,6 @@
 extends Node
 
-const WEBSOCKET_URL = "ws://localhost:5004"
+const WEBSOCKET_URL = "ws://www.sins621.com/game/multiplayer_test"
 
 var socket = WebSocketPeer.new()
 var p1_pos = null
@@ -11,6 +11,7 @@ var p2_pos = null
 
 func _ready() -> void:
 	Engine.max_fps = 60
+	print("Attempting")
 	var err = socket.connect_to_url(WEBSOCKET_URL)
 	if err != OK:
 		print("Unable to Connect")

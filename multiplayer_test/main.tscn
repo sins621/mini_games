@@ -8,30 +8,33 @@ script = ExtResource("1_ig7tw")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 320.0
 offset_bottom = 180.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Player1" type="CharacterBody2D" parent="."]
 
 [node name="P1Rect" type="ColorRect" parent="Player1"]
 offset_left = 10.0
-offset_top = 67.0
 offset_right = 19.0
-offset_bottom = 100.0
+offset_bottom = 33.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Player2" type="CharacterBody2D" parent="."]
 
 [node name="P2Rect" type="ColorRect" parent="Player2"]
 offset_left = 300.0
-offset_top = 69.0
 offset_right = 309.0
-offset_bottom = 102.0
+offset_bottom = 33.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Ball" type="Area2D" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Ball"]
 offset_right = 10.0
 offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
