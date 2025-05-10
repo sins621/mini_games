@@ -2,9 +2,12 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { WebSocketServer, WebSocket } from "ws";
+import morgan from "morgan";
+import http from "http";
 
 const app = express();
 const PORT = process.env.PORT || 5004;
+app.use(morgan("tiny"));
 
 function onSocketPreError(e) {
   console.log(e);
@@ -26,13 +29,11 @@ app.use(
   express.static(path.join(__dirname, "public", "space_invaders"))
 );
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+const server = http.createServer(app);
 
 const wss = new WebSocketServer({ noServer: true });
 
-app.on("upgrade", (req, socket, head) => {
+server.on("upgrade", (req, socket, head) => {
   socket.on("error", onSocketPreError);
 
   wss.handleUpgrade(req, socket, head, (ws) => {
@@ -46,13 +47,17 @@ wss.on("connection", (ws, req) => {
 
   ws.on("message", (msg, isBinary) => {
     wss.clients.forEach((client) => {
-        if (client.readyState === WebSocket.OPEN) {
-            client.send(msg, { binary: isBinary });
-        }
-    })
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(msg, { binary: isBinary });
+      }
+    });
   });
 
-  ws.on('close', () => {
-    console.log('Connection Closed');
-  })
+  ws.on("close", () => {
+    console.log("Connection Closed");
+  });
+});
+
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });

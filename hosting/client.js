@@ -4,8 +4,8 @@ const PORT = process.env.PORT || 5004;
 
 const ws = new WebSocket(`ws://localhost:${PORT}`);
 
-ws.addEventListener("error", () => {
-  console.log("Web Socket Error");
+ws.addEventListener("error", (e) => {
+  console.log(e);
 });
 
 ws.addEventListener("open", () => {
