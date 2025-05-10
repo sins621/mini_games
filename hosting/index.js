@@ -1,9 +1,18 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import { WebSocketServer, WebSocket } from 'ws';
 
 const app = express();
 const PORT = process.env.PORT || 5004;
+
+function onSocketPreError(e){
+    console.log(e);
+}
+
+function onSocketPostError(e){
+    console.log(e);
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,3 +26,18 @@ app.use("/game/space_invaders", express.static(path.join(__dirname, "public", "s
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
+
+const wss = new WebSocketServer({noServer: true})
+
+app.on('upgrade', (req, socket, head) => {
+    socket.on('error', onSocketPreError);
+
+    wss.handleUpgrade(req, socket, head, (ws) => {
+        socket.removeListener('error', onSocketPreError);
+        wss.emit('connection', ws, req);
+    })
+})
+
+wss.on('connection', (ws, req) => {
+    ws.on('error', )
+})
