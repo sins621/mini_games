@@ -1,6 +1,6 @@
 extends Node
 
-const WEBSOCKET_URL = "ws://www.sins621.com/game/multiplayer_test"
+const WEBSOCKET_URL = "wss://www.sins621.com/game/multiplayer_test/"
 
 var socket = WebSocketPeer.new()
 var p1_pos = null
