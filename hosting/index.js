@@ -38,6 +38,7 @@ server.on("upgrade", (req, socket, head) => {
   wss.handleUpgrade(req, socket, head, (ws) => {
     socket.removeListener("error", onSocketPreError);
     wss.emit("connection", ws, req);
+    console.log("Client Connected")
   });
 });
 
@@ -50,6 +51,7 @@ wss.on("connection", (ws, req) => {
         client.send(msg, { binary: isBinary });
       }
     });
+    console.log(msg.toString());
   });
 
   ws.on("close", () => {
