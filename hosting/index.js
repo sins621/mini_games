@@ -1,17 +1,17 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import { WebSocketServer, WebSocket } from 'ws';
+import { WebSocketServer, WebSocket } from "ws";
 
 const app = express();
 const PORT = process.env.PORT || 5004;
 
-function onSocketPreError(e){
-    console.log(e);
+function onSocketPreError(e) {
+  console.log(e);
 }
 
-function onSocketPostError(e){
-    console.log(e);
+function onSocketPostError(e) {
+  console.log(e);
 }
 
 const __filename = fileURLToPath(import.meta.url);
@@ -21,23 +21,38 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/game/pong", express.static(path.join(__dirname, "public", "pong")));
 app.use("/game/snake", express.static(path.join(__dirname, "public", "snake")));
-app.use("/game/space_invaders", express.static(path.join(__dirname, "public", "space_invaders")));
+app.use(
+  "/game/space_invaders",
+  express.static(path.join(__dirname, "public", "space_invaders"))
+);
 
 app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
 
-const wss = new WebSocketServer({noServer: true})
+const wss = new WebSocketServer({ noServer: true });
 
-app.on('upgrade', (req, socket, head) => {
-    socket.on('error', onSocketPreError);
+app.on("upgrade", (req, socket, head) => {
+  socket.on("error", onSocketPreError);
 
-    wss.handleUpgrade(req, socket, head, (ws) => {
-        socket.removeListener('error', onSocketPreError);
-        wss.emit('connection', ws, req);
+  wss.handleUpgrade(req, socket, head, (ws) => {
+    socket.removeListener("error", onSocketPreError);
+    wss.emit("connection", ws, req);
+  });
+});
+
+wss.on("connection", (ws, req) => {
+  ws.on("error", onSocketPostError);
+
+  ws.on("message", (msg, isBinary) => {
+    wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+            client.send(msg, { binary: isBinary });
+        }
     })
-})
+  });
 
-wss.on('connection', (ws, req) => {
-    ws.on('error', )
-})
+  ws.on('close', () => {
+    console.log('Connection Closed');
+  })
+});
