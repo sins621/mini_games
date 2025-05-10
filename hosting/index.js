@@ -36,6 +36,7 @@ app.use(
 
 const server = http.createServer(app);
 const wss = new WebSocketServer({ noServer: true });
+
 let ball_x = 0;
 let ball_y = 0;
 let p1_pos = 0;
