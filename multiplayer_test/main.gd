@@ -3,8 +3,11 @@ extends Node
 const WEBSOCKET_URL = "ws://localhost:5004"
 
 var socket = WebSocketPeer.new()
+var p1_pos = null
+var p2_pos = null
 @onready var player1: CharacterBody2D = $Player1
 @onready var player2: CharacterBody2D = $Player2
+@onready var ball: Area2D = $Ball
 
 func _ready() -> void:
 	Engine.max_fps = 60
@@ -23,16 +26,20 @@ func _process(delta: float) -> void:
 		WebSocketPeer.STATE_OPEN:
 			while socket.get_available_packet_count():
 				var raw = socket.get_packet().get_string_from_utf8()
-				var data = JSON.parse_string(raw)
-				player1.position.y += data["p1_y"] * 100 * delta
-				player2.position.y += data["p2_y"] * 100 * delta
-			
+				var data: Dictionary = JSON.parse_string(raw)
+				if typeof(data) == TYPE_DICTIONARY && data.has("server"):
+					player1.position.y = data["server"]["p1_pos"]
+					player2.position.y = data["server"]["p2_pos"]
+					ball.position = Vector2(data["server"]["ball_x"], data["server"]["ball_y"])
 			var p1_dir = Input.get_action_strength("p1_down") - Input.get_action_strength("p1_up")
 			var p2_dir = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 			
 			var update = {
-				"p1_y": p1_dir,
-				"p2_y": p2_dir
+				"client": {
+					"p1_y": p1_dir,
+					"p2_y": p2_dir,
+					"delta": delta
+				}
 			}
 			socket.send_text(JSON.stringify(update))
 		WebSocketPeer.STATE_CLOSING:

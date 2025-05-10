@@ -31,6 +31,11 @@ app.use(
 
 const server = http.createServer(app);
 const wss = new WebSocketServer({ noServer: true });
+let ball_x = 0;
+let ball_y = 0;
+let p1_pos = 0;
+let p2_pos = 0;
+let direction = 2;
 
 server.on("upgrade", (req, socket, head) => {
   socket.on("error", onSocketPreError);
@@ -38,7 +43,11 @@ server.on("upgrade", (req, socket, head) => {
   wss.handleUpgrade(req, socket, head, (ws) => {
     socket.removeListener("error", onSocketPreError);
     wss.emit("connection", ws, req);
-    console.log("Client Connected")
+    console.log("Client Connected");
+    ball_x = 160;
+    ball_y = 90;
+    p1_pos = 0;
+    p2_pos = 0;
   });
 });
 
@@ -51,13 +60,39 @@ wss.on("connection", (ws, req) => {
         client.send(msg, { binary: isBinary });
       }
     });
-    console.log(msg.toString());
+    const message = JSON.parse(msg.toString());
+    p1_pos += message.client?.p1_y * 100 * message.client?.delta;
+    p2_pos += message.client?.p2_y * 100 * message.client?.delta;
   });
 
   ws.on("close", () => {
     console.log("Connection Closed");
   });
 });
+
+function broadcast(data) {
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(data);
+    }
+  });
+}
+
+setInterval(() => {
+  ball_x += direction;
+  if (ball_x > 280 || ball_x < 20) {
+    direction *= -1;
+  }
+  const message = JSON.stringify({
+    server: {
+      ball_x,
+      ball_y,
+      p1_pos,
+      p2_pos,
+    },
+  });
+  broadcast(message);
+}, 16.66);
 
 server.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running at http://localhost:${PORT}`);
