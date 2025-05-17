@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dafys84a2ckfg"]
+
+[ext_resource type="Script" uid="uid://dq2oq2bcrqauu" path="res://pong_main.gd" id="1_fk2ck"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_fk2ck")
+
+[node name="Paddle1" type="Node2D" parent="."]
+position = Vector2(50, 250)
+
+[node name="Sprite" type="ColorRect" parent="Paddle1"]
+custom_minimum_size = Vector2(20, 100)
+color = Color(1, 0, 0, 1)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Paddle1"]
+root_path = NodePath(".")
+
+[node name="Paddle2" type="Node2D" parent="."]
+position = Vector2(730, 250)
+
+[node name="Sprite" type="ColorRect" parent="Paddle2"]
+custom_minimum_size = Vector2(20, 100)
+color = Color(0, 0, 1, 1)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Paddle2"]
+root_path = NodePath(".")
+
+[node name="Ball" type="Node2D" parent="."]
+position = Vector2(400, 300)
+
+[node name="Sprite" type="ColorRect" parent="Ball"]
+custom_minimum_size = Vector2(20, 20)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Ball"]
+root_path = NodePath(".")
