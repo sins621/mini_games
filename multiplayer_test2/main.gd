@@ -5,7 +5,6 @@ func send_message_to_server(msg: String):
 	if multiplayer.is_server():
 		print("Server received message from peer %s: %s" % [multiplayer.get_remote_sender_id(), msg])
 
-
 func _ready():
 	if OS.has_feature("dedicated_server"):
 		print("Running as server")
