@@ -47,7 +47,7 @@ func _on_join_pressed() -> void:
 	# multiplayer.multiplayer_peer = peer
 
 	var client := WebSocketMultiplayerPeer.new()
-	var url := "wss://www.sins621.com:5000"
+	var url := "wss://41.164.76.235:5000"
 
 	var result := client.create_client(url)
 	if result != OK:
