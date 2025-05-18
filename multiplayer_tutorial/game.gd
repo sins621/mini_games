@@ -2,12 +2,13 @@ class_name Game
 extends Node
 
 @onready var multiplayer_ui = $UI/Multiplayer
+@onready var level := $Level
 
 const PLAYER = preload("res://player/player.tscn")
+const IDLE_TIMEOUT := 60  # seconds
 
-# var peer = ENetMultiplayerPeer.new()
-
-var players: Array[Player] = []
+var players: Array[Node] = []
+var last_activity_time := {}
 
 func _ready() -> void:
 	$MultiplayerSpawner.spawn_function = add_player
@@ -15,13 +16,6 @@ func _ready() -> void:
 		_on_host_pressed()
 
 func _on_host_pressed() -> void:
-	# peer.create_server(25565)
-	# multiplayer.multiplayer_peer = peer
-	# multiplayer.peer_connected.connect(
-	# 	func(pid):
-	# 		print("Peer " + str(pid) + " connected")
-	# 		$MultiplayerSpawner.spawn(pid)
-	# )
 	var server := WebSocketMultiplayerPeer.new()
 	var port := 5000
 	var bind_ip := "*"
@@ -39,13 +33,14 @@ func _on_host_pressed() -> void:
 		$MultiplayerSpawner.spawn(id)
 	)
 
-	# $MultiplayerSpawner.spawn(multiplayer.get_unique_id())
+	server.peer_disconnected.connect(func(id):
+		print("Client disconnected with ID:", id)
+		despawn_player(id)
+	)
+
 	multiplayer_ui.hide()
 
 func _on_join_pressed() -> void:
-	# peer.create_client("localhost", 25565)
-	# multiplayer.multiplayer_peer = peer
-
 	var client := WebSocketMultiplayerPeer.new()
 	var url := "wss://www.sins621.com/gamesocket/"
 
@@ -65,7 +60,31 @@ func add_player(pid):
 	player.name = str(pid)
 	player.global_position = get_random_spawnpoint()
 	players.append(player)
+	add_child(player)
+
+	last_activity_time[pid] = Time.get_unix_time_from_system()
+
+	# OPTIONAL: If you want to track input per player
+	player.connect("input_event", Callable(self, "_on_player_input").bind(pid))
+
 	return player
 
 func get_random_spawnpoint():
-	return $Level.get_children().pick_random().global_position
+	return level.get_children().pick_random().global_position
+
+func despawn_player(pid: int) -> void:
+	var player_node := get_node_or_null(str(pid))
+	if player_node:
+		player_node.queue_free()
+		players.erase(player_node)
+	last_activity_time.erase(pid)
+
+func _on_player_input(pid: int) -> void:
+	last_activity_time[pid] = Time.get_unix_time_from_system()
+
+func _process(_delta: float) -> void:
+	var now = Time.get_unix_time_from_system()
+	for pid in last_activity_time.keys():
+		if now - last_activity_time[pid] > IDLE_TIMEOUT:
+			print("Despawning idle player:", pid)
+			despawn_player(pid)
