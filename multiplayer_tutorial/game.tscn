@@ -69,6 +69,7 @@ layout_mode = 2
 text = "Multiplayer Arena"
 
 [node name="Host" type="Button" parent="UI/Multiplayer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Host"
 
