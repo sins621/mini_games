@@ -34,6 +34,11 @@ app.use(
   express.static(path.join(__dirname, "public", "multiplayer_test"))
 );
 
+app.use(
+  "/game/multiplayer_tutorial",
+  express.static(path.join(__dirname, "public", "multiplayer_tutorial"))
+);
+
 const server = http.createServer(app);
 const wss = new WebSocketServer({ noServer: true });
 
