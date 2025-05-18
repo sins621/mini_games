@@ -23,7 +23,7 @@ func _on_host_pressed() -> void:
 	# 		$MultiplayerSpawner.spawn(pid)
 	# )
 	var server := WebSocketMultiplayerPeer.new()
-	var port := 12345
+	var port := 5000
 	var bind_ip := "*"
 
 	var result := server.create_server(port, bind_ip)
@@ -47,7 +47,7 @@ func _on_join_pressed() -> void:
 	# multiplayer.multiplayer_peer = peer
 
 	var client := WebSocketMultiplayerPeer.new()
-	var url := "wss://www.sins621.com:12345"
+	var url := "wss://www.sins621.com:5000"
 
 	var result := client.create_client(url)
 	if result != OK:
