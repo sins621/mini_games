@@ -10,7 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 
 	if body is Player:
-		body.take_damage.rpc_id(body.get_multiplayer_authority(), 25)
+		body.take_damage.rpc_id(body.get_multiplayer_authority(), 100)
 	
 	remove_bullet.rpc()
 

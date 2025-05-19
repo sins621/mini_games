@@ -25,5 +25,7 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
             pm2 stop minigames
+            pm2 stop godot-server
             git pull
             pm2 start minigames
+            pm2 start godot-server
