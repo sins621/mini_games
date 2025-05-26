@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://cf5cwc0pv7dcw"]
+
+[ext_resource type="Texture2D" uid="uid://d2m7j7t35a240" path="res://players/joe/idle.png" id="1_uk0nh"]
+[ext_resource type="Script" uid="uid://dm4jnnku1s0b4" path="res://players/bob/bob.gd" id="1_yk0ft"]
+[ext_resource type="Texture2D" uid="uid://bnxe4vmkj5r4o" path="res://players/joe/run.png" id="3_3twdb"]
+[ext_resource type="Texture2D" uid="uid://cv3oi36h2pob8" path="res://players/joe/jump.png" id="3_fhv3v"]
+[ext_resource type="Script" uid="uid://dh1tcfjvvkrdf" path="res://players/bob/bob_animations.gd" id="5_iu2gg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk0ft"]
+atlas = ExtResource("1_uk0nh")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3twdb"]
+atlas = ExtResource("1_uk0nh")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhv3v"]
+atlas = ExtResource("3_3twdb")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu2gg"]
+atlas = ExtResource("3_3twdb")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhv3v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk0ft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3twdb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_fhv3v")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhv3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu2gg")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk0nh"]
+size = Vector2(6, 5)
+
+[node name="Bob" type="CharacterBody2D"]
+script = ExtResource("1_yk0ft")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fhv3v")
+animation = &"idle"
+autoplay = "idle"
+script = ExtResource("5_iu2gg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_uk0nh")
