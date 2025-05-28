@@ -1,3 +1,8 @@
 {
-	"godotTools.editorPath.godot4": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\Godot Engine\\godot.windows.opt.tools.64.exe"
+    "godotTools.editorPath.godot4": "c:\\Program Files\\Godot\\Godot_v4.4.1-stable_win64.exe",
+    "files.exclude": {
+        "**/*.uid": true,
+        "**/*.import": true,
+		"**/*.gitignore": true,
+    }
 }

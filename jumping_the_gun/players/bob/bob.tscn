@@ -70,3 +70,6 @@ script = ExtResource("5_iu2gg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_uk0nh")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(4, -3)

@@ -1,13 +1,11 @@
 extends Node
 
-const SPEED = 100.0
+const SPEED = 55.0
 
 func enter(_player):
 	pass
 
 func update(player, _delta):
-	print("State RUN")
-
 	if Input.is_action_just_pressed("jump"):
 			player.change_state("jump")
 	
