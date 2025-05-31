@@ -62,17 +62,15 @@ size = Vector2(6, 5)
 [node name="Bob" type="CharacterBody2D"]
 script = ExtResource("1_yk0ft")
 
-[node name="ViewContainer" type="Node2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ViewContainer"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fhv3v")
 animation = &"idle"
 autoplay = "idle"
 script = SubResource("GDScript_fhv3v")
 
-[node name="Marker2D" type="Marker2D" parent="ViewContainer"]
-position = Vector2(4, -3)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_uk0nh")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(4, -3)

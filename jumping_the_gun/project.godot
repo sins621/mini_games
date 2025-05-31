@@ -13,20 +13,20 @@ config_version=5
 config/name="jumping_the_gun"
 run/main_scene="uid://b4og2y02jypo4"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-Server="*res://server.gd"
+Server="*res://entities/bullets/server.gd"
 
 [display]
 
 window/size/viewport_width=160
 window/size/viewport_height=90
-window/size/window_width_override=1280
-window/size/window_height_override=720
+window/size/window_width_override=640
+window/size/window_height_override=360
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 
 [input]
 
