@@ -20,6 +20,7 @@ func spawn_basic_platform(height: int, width: int):
 			new_platform.global_position.x = (randi() % width)
 			new_platform.global_position.y = height - PLATFORM_Y_SPACING
 		else:
+			@warning_ignore("integer_division")
 			new_platform.global_position.x = platforms[i - 1].global_position.x + ((randi() % PLATFORM_X_SPACING) - PLATFORM_X_SPACING / 2)
 			new_platform.global_position.y = height - PLATFORM_Y_SPACING - i * PLATFORM_Y_SPACING
 		
