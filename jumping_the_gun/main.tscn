@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4og2y02jypo4"]
+[gd_scene load_steps=5 format=3 uid="uid://b4og2y02jypo4"]
 
 [ext_resource type="Script" uid="uid://borcyog3pb0v6" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bkdetilcs10et" path="res://levels/level1.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cf5cwc0pv7dcw" path="res://players/bob/bob.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://cmawucxwy3si4" path="res://platform_spawner.gd" id="4_1bvp3"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
@@ -11,3 +12,6 @@ script = ExtResource("1_ig7tw")
 
 [node name="Bob" parent="." instance=ExtResource("3_h2yge")]
 position = Vector2(19, 82)
+
+[node name="PlatformSpawner" type="Node2D" parent="."]
+script = ExtResource("4_1bvp3")

@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dahnn2bd08x3i"]
+[gd_scene load_steps=4 format=3 uid="uid://dahnn2bd08x3i"]
 
+[ext_resource type="Script" uid="uid://db2ekwvxyqrj7" path="res://entities/platform/platform.gd" id="1_lly8c"]
 [ext_resource type="Texture2D" uid="uid://dx5kicgbxnyxd" path="res://entities/platform/yellow_wide.png" id="1_wocd5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lly8c"]
 size = Vector2(26, 4)
 
 [node name="Platform" type="AnimatableBody2D"]
+script = ExtResource("1_lly8c")
+metadata/_custom_type_script = "uid://db2ekwvxyqrj7"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wocd5")

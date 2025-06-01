@@ -24,8 +24,8 @@ Server="*res://entities/bullets/server.gd"
 
 window/size/viewport_width=160
 window/size/viewport_height=90
-window/size/window_width_override=640
-window/size/window_height_override=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
 window/stretch/mode="viewport"
 
 [input]
