@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED : int = 100
+const SPEED : int = 60
 const JUMP_VELOCITY = -150
 
 var GRAVITY : int = ProjectSettings.get_setting("physics/2d/default_gravity")
