@@ -37,6 +37,13 @@ func spawn_basic_platforms(height: int, width: int):
 		spawn_position.x = Utils.get_random_int(PLATFORM_WIDTH, PLATFORM_X_SPAWN_OFFSET)
 		spawn_position.y -= PLATFORM_Y_SPACING
 
+func generate_start_position(height: int, width: int) -> Vector2:
+	@warning_ignore("integer_division")
+	return Vector2(
+		Utils.get_random_int(PLATFORM_X_SPAWN_OFFSET, width - PLATFORM_X_SPAWN_OFFSET),
+		height - PLATFORM_Y_SPACING
+	)
+
 func can_spawn_more_platforms(spawn_position: Vector2, width: int, platforms_in_row: int) -> bool:
 	return spawn_position.x + PLATFORM_WIDTH < width - PLATFORM_WIDTH and platforms_in_row < MAX_PLATFORMS_PER_ROW
 
@@ -59,10 +66,3 @@ func spawn_platform(spawn_position: Vector2):
 	new_platform.global_position = spawn_position
 	self.add_child(new_platform)
 	platforms.append(new_platform)
-
-func generate_start_position(height: int, width: int) -> Vector2:
-	@warning_ignore("integer_division")
-	return Vector2(
-		Utils.get_random_int(PLATFORM_X_SPAWN_OFFSET, width - PLATFORM_X_SPAWN_OFFSET),
-		height - PLATFORM_Y_SPACING
-	)
