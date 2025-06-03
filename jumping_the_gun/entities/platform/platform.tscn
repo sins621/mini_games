@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lly8c"]
 size = Vector2(26, 4)
 
-[node name="Platform" type="AnimatableBody2D"]
+[node name="BasicPlatform" type="AnimatableBody2D"]
 script = ExtResource("1_lly8c")
 metadata/_custom_type_script = "uid://db2ekwvxyqrj7"
 

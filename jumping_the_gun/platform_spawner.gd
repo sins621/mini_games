@@ -2,30 +2,26 @@ extends Node2D
 
 const PLATFORM_Y_SPACING: int = 13
 const PLATFORM_X_SPAWN_OFFSET: int = 40
-const PLATFORM_WIDTH: int = 14
 const MAX_PLATFORMS_PER_ROW: int = 3
-const MIN_PLATFORM_SPACING: int = PLATFORM_WIDTH * 3
-const MAX_PLATFORM_SPACING: int = PLATFORM_WIDTH * 4
-const MAX_PLATFORM_JUMP_DISTANCE: int = PLATFORM_WIDTH * 3
 const MIN_PLATFORM_JUMP_DISTANCE: int = 10
 
 var platforms: Array[Platform] = []
 
 @onready var basic_platform: PackedScene = preload("res://entities/platform/platform.tscn")
-@onready var view_height = int(get_viewport_rect().size.y)
-@onready var view_width = int(get_viewport_rect().size.x)
 
 func _ready():
+	var view_height = int(get_viewport_rect().size.y)
+	var view_width = int(get_viewport_rect().size.x)
 	spawn_basic_platforms(view_height, view_width)
 
-func spawn_basic_platforms(height: int, width: int):
-	var spawn_position: Vector2 = generate_start_position(height, width)
+func spawn_basic_platforms(view_height: int, view_width: int):
+	var spawn_position: Vector2 = generate_start_position(view_height, view_width)
 	spawn_platform(spawn_position)
 	spawn_position.y -= PLATFORM_Y_SPACING
 	
 	while spawn_position.y > 0:
 		var spawned_platforms_per_row: int = 0
-		while can_spawn_more_platforms(spawn_position, width, spawned_platforms_per_row):
+		while can_spawn_more_platforms(spawn_position, view_width, spawned_platforms_per_row):
 			if should_spawn_platform_at_position(spawn_position):
 				spawn_platform(spawn_position)
 				spawn_position.x += Utils.get_random_int(MIN_PLATFORM_SPACING, MAX_PLATFORM_SPACING)
@@ -59,7 +55,7 @@ func should_spawn_platform_at_position(spawn_position: Vector2) -> bool:
 
 func is_within_jump_distance(platform_x: float, spawn_x: float) -> bool:
 	var distance = abs(platform_x - spawn_x)
-	return distance < MAX_PLATFORM_JUMP_DISTANCE and distance > MIN_PLATFORM_JUMP_DISTANCE
+	return distance > MIN_PLATFORM_JUMP_DISTANCE and distance < MAX_PLATFORM_JUMP_DISTANCE
 
 func spawn_platform(spawn_position: Vector2):
 	var new_platform: Platform = basic_platform.instantiate()

@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1yj0bgikr8ae"]
+
+[ext_resource type="PackedScene" uid="uid://bkdetilcs10et" path="res://levels/level1.tscn" id="1_mioqa"]
+[ext_resource type="PackedScene" uid="uid://cf5cwc0pv7dcw" path="res://players/bob/bob.tscn" id="2_kqk0q"]
+[ext_resource type="PackedScene" uid="uid://7cl8g6703s66" path="res://entities/platform/crumbling_platform.tscn" id="3_twiol"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Level1" parent="." instance=ExtResource("1_mioqa")]
+
+[node name="Bob" parent="." instance=ExtResource("2_kqk0q")]
+position = Vector2(80, 82)
+
+[node name="CrumblingPlatform" parent="." instance=ExtResource("3_twiol")]
+position = Vector2(52, 77)
